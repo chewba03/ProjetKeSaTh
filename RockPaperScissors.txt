@@ -1,0 +1,6 @@
+Notre projet a pour objectif la création d'une API RESTful pour le jeu "Rock, Paper, Scissors". La conception de cette API repose sur une base de données structurée de la manière suivante :
+ 
+User (idUser, email, password, role, lastname, firstname, dob)
+Profile (nickname, rank, idUser)
+Skin (idSkin, Skin_name, skin_prize, rarity)
+Tournament (idTour, Tname, date_debut, date_fin, Tournament_prize )
