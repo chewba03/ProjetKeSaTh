@@ -6,7 +6,7 @@ const router = new Router();
 
 router.get("/User", checkAuth({ transient: true }), async (req, res, next) => {
     if (req.user) {
-      req.query.idUser = req.user.idUser;
+      req.query.id = req.User.idUser;
     }
     const users = await User.findAll({
       where: req.query,
@@ -16,7 +16,7 @@ router.get("/User", checkAuth({ transient: true }), async (req, res, next) => {
 
 
 router.get("/User/:idUser", async (req, res, next) => {
-    if (req.user.id !== parseInt(req.params.id)) return res.sendStatus(403);
+    if (req.User.idUser !== parseInt(req.params.id)) return res.sendStatus(403);
     const user = await User.findByPk(parseInt(req.params.id));
     if (!user) res.sendStatus(404);
     else res.json(user);
@@ -36,12 +36,12 @@ router.put("/User/:idUser", async (req, res, next) => {
     try {
       const result = await User.destroy({
         where: {
-            idUser: req.params.idUser,
+            idUser: parseInt(req.params.id),
         },
       });
       const user = await User.create({
         ...req.body,
-        idUser: req.params.idUser,
+        idUser: parseInt(req.params.id),
       });
   
       res.status(result ? 200 : 201).json(user);
@@ -55,7 +55,7 @@ router.put("/User/:idUser", async (req, res, next) => {
     try{
         const result = await User.destroy({
             where: {
-                idUser: parseInt(req.params.idUser),
+                idUser: parseInt(req.params.id),
             },
         });
         res.sendStatus(result ? 204 : 404);
