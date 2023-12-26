@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const connection = require("./db");
 
-class Tournemant extends Model {}
+class Tournament extends Model {}
 
-Tournemant.init(
+Tournament.init(
   {
     idTour:{
         type: DataTypes.INTEGER,
@@ -20,7 +20,7 @@ Tournemant.init(
     
     date_debut: DataTypes.DATE,
     date_fin: DataTypes.DATE,
-    Tournemant_prize:DataTypes.STRING,
+    Tournament_prize:DataTypes.STRING,
 
   },
   {
@@ -28,4 +28,4 @@ Tournemant.init(
   }
 );
 
-module.exports = Tournemant;
+module.exports = Tournament;
