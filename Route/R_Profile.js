@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const Profile = require("../models/Profile");
-const checkAuth = require("../middlewares/checkAuth");
+const checkAuth = require("../middlewares/checkauth");
 const router = new Router();
 
 router.get("/Profile", checkAuth({ transient: true }), async (req, res, next) => {
