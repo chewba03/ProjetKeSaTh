@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const Skin = require("../models/Skin");
-const checkAuth = require("../middlewares/checkauth");
+const checkAuth = require("../middlewares/checkAuth");
 const router = new Router();
 
 router.get("/Skin", checkAuth({ transient: true }), async (req, res, next) => {
