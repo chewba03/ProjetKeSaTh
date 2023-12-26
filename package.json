@@ -2,9 +2,9 @@
   "name": "projetkesath",
   "version": "1.0.0",
   "description": "",
-  "main": "checkauth.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch server.js",
     "start": "node server.js"
   },
   "author": "",
