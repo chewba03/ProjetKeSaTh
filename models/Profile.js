@@ -5,6 +5,15 @@ class Profile extends Model {}
 
 Profile.init(
   {
+    idUser:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      References:{
+        Model: 'User',
+        key: "idUser",
+      },
+      
+  },
     nickname:{
         type: DataTypes.STRING,
         unique: true,
@@ -14,11 +23,17 @@ Profile.init(
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isIn: [['bronze','gold','silver', 'plat', 'champion','Diamond']],
+          isIn: [['Bronze','gold','silver', 'plat', 'champion','Diamond']],
         },
       },
-  },
+    },
   {
     sequelize: connection,
   }
 );
+
+Profile.belongsTo(User,{
+  foreignKey: 'idUser',
+});
+
+module.exports = Profile;

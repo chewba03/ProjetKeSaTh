@@ -25,3 +25,5 @@ Skin.init(
     sequelize: connection,
   }
 );
+
+module.exports = Skin;

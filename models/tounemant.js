@@ -5,7 +5,7 @@ class Tournemant extends Model {}
 
 Tournemant.init(
   {
-    idTOUR:{
+    idTour:{
         type: DataTypes.INTEGER,
         primaryKey:true,
         allowNull: false,
@@ -27,3 +27,5 @@ Tournemant.init(
     sequelize: connection,
   }
 );
+
+module.exports = Tournemant;

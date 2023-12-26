@@ -33,3 +33,5 @@ User.init(
     sequelize: connection,
   }
 );
+
+module.exports = User;
