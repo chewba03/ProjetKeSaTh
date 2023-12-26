@@ -43,3 +43,4 @@ app.listen(PORT, () => {
     console.log("Server running on port"+PORT);
 });
 
+// On a pas créé le fichier request.http car on a utilisé le Thunder Client pour verifie les requets http
