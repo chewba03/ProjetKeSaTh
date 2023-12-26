@@ -3,6 +3,15 @@ const PORT =process.env.PORT || 3000;
 const app =express();
 
 
+
+/*app.get("/", (req, res, next) => {
+  res.send("Hello World!" + JSON.stringify(req.query));
+});
+
+app.post("/", (req, res, next) => {
+  res.send("Hello World! from POST" + JSON.stringify(req.body));
+});
+
 app.get('/', (req,res,next)=>{
     res.send("Hello saif");
 });
@@ -14,7 +23,7 @@ app.post('/',(req,res,next)=>{
 app.listen(PORT, () => {
     console.log("Server running on port"+PORT);
 })
-
+*/
 /*app.post("/login", async (req, res) => {
     const { iduser, password } = req.body;
     const user = await User.findOne({
@@ -47,4 +56,7 @@ const app = express();*/
   
 
   //tetst
+
+
+  
 
