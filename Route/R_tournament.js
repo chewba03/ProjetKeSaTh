@@ -3,6 +3,9 @@ const tournament = require("../models/tournament");
 const checkAuth = require("../middlewares/checkAuth");
 const checkAdmin = require("../middlewares/checkAdmin");
 const router = new Router();
+router.use(checkAdmin);
+router.use(checkAuth);
+
 
 router.get("/tournament", checkAuth({ transient: true }), async (req, res, next) => {
     try {

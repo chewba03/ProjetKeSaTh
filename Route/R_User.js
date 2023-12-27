@@ -3,7 +3,8 @@ const User = require("../models/User");
 const checkAuth = require("../middlewares/checkAuth");
 const checkAdmin = require("../middlewares/checkAdmin");
 const router = new Router();
-
+router.use(checkAdmin);
+router.use(checkAuth);
 
 router.get("/User", checkAuth({ transient: true }), checkAdmin({ Admin : true }),async (req, res, next) => {
     if (req.user) {
@@ -16,7 +17,7 @@ router.get("/User", checkAuth({ transient: true }), checkAdmin({ Admin : true })
   });
 
 
-router.get("/User/:idUser", async (req, res, next) => {
+router.get("/User/:idUser" ,async (req, res, next) => {
     if (req.User.idUser !== parseInt(req.params.id)) return res.sendStatus(403);
     const user = await User.findByPk(parseInt(req.params.id));
     if (!user) res.sendStatus(404);
@@ -33,7 +34,7 @@ router.get("/User/:idUser", async (req, res, next) => {
   });
   
 
-router.put("/User/:idUser", async (req, res, next) => {
+router.put("/User/:idUser", checkAuth({ transient: true }),async (req, res, next) => {
     try {
       const result = await User.destroy({
         where: {
@@ -52,7 +53,7 @@ router.put("/User/:idUser", async (req, res, next) => {
   });
 
 
-  router.delete("/User/:idUser", async (req, res, next) => {
+  router.delete("/User/:idUser", checkAdmin({ Admin : true }),async (req, res, next) => {
     try{
         const result = await User.destroy({
             where: {

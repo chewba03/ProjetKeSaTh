@@ -3,6 +3,8 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = new Router();
+router.use(checkAdmin);
+router.use(checkAuth);
 
 router.post("/login", async (req, res, next) => {
   try {

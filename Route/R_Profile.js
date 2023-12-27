@@ -3,6 +3,9 @@ const Profile = require("../models/Profile");
 const checkAuth = require("../middlewares/checkAuth");
 const checkAdmin = require("../middlewares/checkAdmin");
 const router = new Router();
+router.use(checkAdmin);
+router.use(checkAuth);
+
 
 router.get("/Profile", checkAuth({ transient: true }), checkAdmin({ Admin : true }),async (req, res, next) => {
     try {
