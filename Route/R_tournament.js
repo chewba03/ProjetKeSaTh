@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const tournament = require("../models/tournament");
 const checkAuth = require("../middlewares/checkAuth");
+const checkAdmin = require("../middlewares/checkAdmin");
 const router = new Router();
 
 router.get("/tournament", checkAuth({ transient: true }), async (req, res, next) => {
@@ -24,7 +25,7 @@ router.get("/tournament/:idTour", checkAuth({ transient: true }), async (req, re
     }
 });
 
-router.post("/tournament", checkAuth({ transient: true }), async (req, res, next) => {
+router.post("/tournament", checkAuth({ transient: true }),checkAdmin({ Admin : true }) ,async (req, res, next) => {
     try {
         const newtournament=await tournament.create(req.body);
         res.status(201).json(newtournament);
@@ -37,7 +38,7 @@ router.post("/tournament", checkAuth({ transient: true }), async (req, res, next
 
 
 
-router.put("/tournament/:idTour", checkAuth({ transient: true }), async (req, res, next) => {
+router.put("/tournament/:idTour", checkAuth({ transient: true }), checkAdmin({ Admin : true }),async (req, res, next) => {
     try {
         const tournament1 =await tournament.findByPK(req.params.idTour);
         if (!tournament1){
@@ -50,7 +51,7 @@ router.put("/tournament/:idTour", checkAuth({ transient: true }), async (req, re
       }
 });
 
-router.delete("/tournament/:idTour", checkAuth({ transient: true }), async (req, res, next) => {
+router.delete("/tournament/:idTour", checkAuth({ transient: true }), checkAdmin({ Admin : true }),async (req, res, next) => {
     try {
         const delTournament =await tournament.destroy({
             where: {

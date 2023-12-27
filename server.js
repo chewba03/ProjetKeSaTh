@@ -9,6 +9,7 @@ const UsersRouter = require("./Route/R_User");
 const ProfileRouter = require("./Route/R_Profile");
 const SkinRouter = require("./Route/R_skin");
 const TournamentRouter = require("./Route/R_tournament");
+const PartyRouter = require("./Route/R_party");
 
 
 app.use(SecurityRouter);
@@ -16,6 +17,7 @@ app.use(UsersRouter);
 app.use(ProfileRouter);
 app.use(SkinRouter);
 app.use(TournamentRouter);
+app.use(PartyRouter);
 
 
 

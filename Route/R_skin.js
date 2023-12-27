@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const Skin = require("../models/Skin");
 const checkAuth = require("../middlewares/checkAuth");
+const checkAdmin = require("../middlewares/checkAdmin");
 const router = new Router();
 
 router.get("/Skin", checkAuth({ transient: true }), async (req, res, next) => {
@@ -24,7 +25,7 @@ router.get("/Skin/:idSkin", checkAuth({ transient: true }), async (req, res, nex
       }
 });
 
-router.post("/Skin", checkAuth({ transient: true }), async (req, res, next) => {
+router.post("/Skin", checkAuth({ transient: true }), checkAdmin({ Admin : true }),async (req, res, next) => {
     try {
         const newSkin=await Skin.create(req.body);
         res.status(201).json(newSkin);
@@ -34,7 +35,7 @@ router.post("/Skin", checkAuth({ transient: true }), async (req, res, next) => {
 });
 
 
-router.put("/Skin/:idSkin", checkAuth({ transient: true }), async (req, res, next) => {
+router.put("/Skin/:idSkin", checkAuth({ transient: true }), checkAdmin({ Admin : true }),async (req, res, next) => {
     try {
         const skin1=await Skin.findByPK(req.params.idSkin);
         if (!skin1){
@@ -47,7 +48,7 @@ router.put("/Skin/:idSkin", checkAuth({ transient: true }), async (req, res, nex
       }
 });
 
-router.delete("/Skin/:idSkin", checkAuth({ transient: true }), async (req, res, next) => {
+router.delete("/Skin/:idSkin", checkAuth({ transient: true }), checkAdmin({ Admin : true }),async (req, res, next) => {
     try {
         const delskin=await Skin.destroy({
             where: {

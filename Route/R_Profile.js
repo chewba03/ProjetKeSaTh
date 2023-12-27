@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const Profile = require("../models/Profile");
 const checkAuth = require("../middlewares/checkAuth");
+const checkAdmin = require("../middlewares/checkAdmin");
 const router = new Router();
 
-router.get("/Profile", checkAuth({ transient: true }), async (req, res, next) => {
+router.get("/Profile", checkAuth({ transient: true }), checkAdmin({ Admin : true }),async (req, res, next) => {
     try {
         const Profiles=await Profile.findAll();
         res.status(200).json(Profiles);

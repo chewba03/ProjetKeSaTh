@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const Party = require("../models/Party");
 const checkAuth = require("../middlewares/checkAuth");
+const checkAdmin = require("../middlewares/checkAdmin");
 const router = new Router();
 
 router.get("/Party", checkAuth({ transient: true }), async (req, res, next) => {
@@ -24,7 +25,7 @@ router.get("/Party/:idParty", checkAuth({ transient: true }), async (req, res, n
     }
 });
 
-router.post("/Party", async (req, res, next) => {
+router.post("/Party", checkAuth({ transient: true }),checkAdmin({ Admin : true }),async (req, res, next) => {
     try {
         const newParty=await Party.create(req.body);
         res.status(201).json(newParty);
@@ -36,7 +37,7 @@ router.post("/Party", async (req, res, next) => {
 
 
 
-router.delete("/Party/:idParty", checkAuth({ transient: true }),async (req, res, next) => {
+router.delete("/Party/:idParty", checkAuth({ transient: true }),checkAdmin({ Admin : true }),async (req, res, next) => {
    
     try {
             const endOfTheParty =await Party.destroy({

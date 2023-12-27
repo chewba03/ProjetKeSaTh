@@ -1,10 +1,11 @@
 const { Router } = require("express");
 const User = require("../models/User");
 const checkAuth = require("../middlewares/checkAuth");
+const checkAdmin = require("../middlewares/checkAdmin");
 const router = new Router();
 
 
-router.get("/User", checkAuth({ transient: true }), async (req, res, next) => {
+router.get("/User", checkAuth({ transient: true }), checkAdmin({ Admin : true }),async (req, res, next) => {
     if (req.user) {
       req.query.id = req.User.idUser;
     }
